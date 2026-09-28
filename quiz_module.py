@@ -1,6 +1,9 @@
 import re
 import json
 import os
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
+
 import google.generativeai as genai
 
 api_key = os.environ.get("GEMINI_API_KEY", "")
