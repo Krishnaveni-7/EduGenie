@@ -4,9 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EduGenie - AI Learning Assistant</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Marked.js for rendering beautiful markdown -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
@@ -70,6 +69,14 @@
   </div>
 
   <script>
+    // Helper function to render text with marked.js if available
+    function renderMarkdown(text) {
+      if (window.marked && typeof window.marked.parse === "function") {
+        return window.marked.parse(text);
+      }
+      return text;
+    }
+
     // 1. Q&A Handler
     document.getElementById("qaForm").addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -81,7 +88,8 @@
       try {
         const res = await fetch(`/qa?question=${encodeURIComponent(question)}`);
         const data = await res.json();
-        resultBox.innerHTML = `<strong class="title">Answer:</strong><div class="content-body">${data.answer || data.error || "No response received."}</div>`;
+        const responseText = data.answer || data.error || "No response received.";
+        resultBox.innerHTML = `<strong class="title">Answer:</strong><div class="content-body">${renderMarkdown(responseText)}</div>`;
       } catch (err) {
         resultBox.innerHTML = `<strong class="title">Answer:</strong><div class="error-state">Error: ${err.message}</div>`;
       }
@@ -102,7 +110,8 @@
           body: JSON.stringify({ topic })
         });
         const data = await res.json();
-        resultBox.innerHTML = `<strong class="title">Explanation:</strong><div class="content-body">${data.explanation || data.error || "No explanation received."}</div>`;
+        const responseText = data.explanation || data.error || "No explanation received.";
+        resultBox.innerHTML = `<strong class="title">Explanation:</strong><div class="content-body">${renderMarkdown(responseText)}</div>`;
       } catch (err) {
         resultBox.innerHTML = `<strong class="title">Explanation:</strong><div class="error-state">Error: ${err.message}</div>`;
       }
@@ -123,13 +132,14 @@
           body: JSON.stringify({ text })
         });
         const data = await res.json();
-        resultBox.innerHTML = `<strong class="title">Summary:</strong><div class="content-body">${data.summary || data.error || "No summary received."}</div>`;
+        const responseText = data.summary || data.error || "No summary received.";
+        resultBox.innerHTML = `<strong class="title">Summary:</strong><div class="content-body">${renderMarkdown(responseText)}</div>`;
       } catch (err) {
         resultBox.innerHTML = `<strong class="title">Summary:</strong><div class="error-state">Error: ${err.message}</div>`;
       }
     });
 
-    // 4. Quiz Handler (Dynamic Question Count & Interactive Checking)
+    // 4. Quiz Handler
     document.getElementById("quizForm").addEventListener("submit", async (e) => {
       e.preventDefault();
       const text = document.getElementById("quizText").value.trim();
@@ -211,7 +221,8 @@
       try {
         const res = await fetch(`/learn/recommendations?topic=${encodeURIComponent(topic)}`);
         const data = await res.json();
-        resultBox.innerHTML = `<strong class="title">Learning Recommendations for "${data.topic || topic}":</strong><div class="content-body">${data.recommendation || data.error || "No recommendations generated."}</div>`;
+        const responseText = data.recommendation || data.error || "No recommendations generated.";
+        resultBox.innerHTML = `<strong class="title">Learning Recommendations for "${data.topic || topic}":</strong><div class="content-body">${renderMarkdown(responseText)}</div>`;
       } catch (err) {
         resultBox.innerHTML = `<strong class="title">Learning Recommendations for "${topic}":</strong><div class="error-state">Error: ${err.message}</div>`;
       }

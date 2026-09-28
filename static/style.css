@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: Calibri, "Segoe UI", Candara, Arial, sans-serif;
   background-color: #f8fafc;
   color: #0f172a;
   display: flex;
@@ -17,7 +17,7 @@ body {
 
 .container {
   width: 100%;
-  max-width: 740px;
+  max-width: 760px;
   display: flex;
   flex-direction: column;
   gap: 36px;
@@ -30,11 +30,11 @@ body {
 
 .brand-badge {
   display: inline-block;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 4px 12px;
+  letter-spacing: 0.05em;
+  padding: 4px 14px;
   border-radius: 9999px;
   background-color: #e0e7ff;
   color: #3730a3;
@@ -42,15 +42,14 @@ body {
 }
 
 .header h1 {
-  font-size: 2.2rem;
+  font-size: 2.3rem;
   font-weight: 700;
   color: #0f172a;
-  letter-spacing: -0.02em;
   margin-bottom: 8px;
 }
 
 .header p {
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: #64748b;
   font-weight: 400;
 }
@@ -64,10 +63,9 @@ body {
 }
 
 .section-card label {
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: #1e293b;
-  letter-spacing: -0.01em;
 }
 
 .form-row {
@@ -85,11 +83,11 @@ body {
 .form-row input,
 .form-row textarea {
   flex: 1;
-  max-width: 480px;
+  max-width: 500px;
   width: 100%;
-  padding: 11px 16px;
-  font-size: 0.95rem;
-  font-family: inherit;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-family: Calibri, "Segoe UI", Candara, Arial, sans-serif;
   border: 1px solid #cbd5e1;
   border-radius: 8px;
   background-color: #ffffff;
@@ -106,14 +104,14 @@ body {
 .form-row input:focus,
 .form-row textarea:focus {
   border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
 .btn-primary {
-  padding: 11px 22px;
-  font-size: 0.95rem;
+  padding: 12px 24px;
+  font-size: 1rem;
   font-weight: 600;
-  font-family: inherit;
+  font-family: Calibri, "Segoe UI", Candara, Arial, sans-serif;
   color: #ffffff;
   background-color: #2563eb;
   border: 1px solid #1d4ed8;
@@ -134,23 +132,24 @@ body {
 }
 
 .btn-sm {
-  padding: 6px 14px;
-  font-size: 0.85rem;
+  padding: 8px 16px;
+  font-size: 0.95rem;
   margin-top: 10px;
 }
 
 .output {
   width: 100%;
-  max-width: 680px;
+  max-width: 700px;
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
-  padding: 24px;
+  padding: 26px;
   margin-top: 8px;
   display: none;
-  font-size: 0.94rem;
-  line-height: 1.65;
+  font-family: Calibri, "Segoe UI", Candara, Arial, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
   color: #1e293b;
   word-break: break-word;
 }
@@ -173,19 +172,69 @@ body {
 
 .output strong.title {
   display: block;
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   color: #0f172a;
   border-bottom: 1px solid #f1f5f9;
   padding-bottom: 8px;
 }
 
+/* Rich Markdown Content Styling */
 .content-body {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  white-space: pre-wrap;
-  font-size: 0.92rem;
-  color: #334155;
+  font-family: Calibri, "Segoe UI", Candara, Arial, sans-serif;
+  color: #1e293b;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.content-body h1,
+.content-body h2,
+.content-body h3,
+.content-body h4 {
+  color: #0f172a;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.content-body p {
+  margin-bottom: 12px;
+}
+
+.content-body ul,
+.content-body ol {
+  margin-left: 24px;
+  margin-bottom: 14px;
+}
+
+.content-body li {
+  margin-bottom: 6px;
+}
+
+.content-body pre {
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 14px;
+  overflow-x: auto;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.95rem;
+  margin: 14px 0;
+}
+
+.content-body code {
+  background-color: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.95rem;
+}
+
+.content-body hr {
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+  margin: 18px 0;
 }
 
 .loading-state {
@@ -195,7 +244,7 @@ body {
 
 .error-state {
   color: #dc2626;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* Quiz Specific Styling */
@@ -203,7 +252,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  white-space: normal;
 }
 
 .quiz-question-block {
@@ -213,7 +261,7 @@ body {
 }
 
 .quiz-question-title {
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 6px;
   color: #0f172a;
 }
@@ -222,7 +270,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 0.93rem;
+  font-size: 1rem;
   color: #334155;
   cursor: pointer;
   padding: 6px 10px;
@@ -237,15 +285,15 @@ body {
 .quiz-option input[type="radio"] {
   cursor: pointer;
   accent-color: #2563eb;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
 }
 
 .quiz-feedback {
   margin-top: 8px;
-  font-size: 0.92rem;
+  font-size: 1rem;
   font-weight: 600;
-  padding: 8px 12px;
+  padding: 8px 14px;
   border-radius: 6px;
   display: inline-block;
   width: fit-content;
@@ -266,5 +314,5 @@ body {
 hr.quiz-divider {
   border: 0;
   border-top: 1px solid #e2e8f0;
-  margin: 12px 0;
+  margin: 14px 0;
 }
