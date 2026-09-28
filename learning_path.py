@@ -1,4 +1,7 @@
 import os
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
+
 import google.generativeai as genai
 
 api_key = os.environ.get("GEMINI_API_KEY", "")
@@ -15,12 +18,8 @@ if api_key:
 def get_learning_recommendations(topic: str) -> str:
     try:
         model = genai.GenerativeModel(model_name="models/gemini-3.8-flash")
-        prompt = (
-            f"Generate a personalized, structured learning roadmap for '{topic}'. "
-            f"Organize concepts from beginner to advanced difficulty, and recommend useful "
-            f"resources such as videos, articles, documentation, or books."
-        )
-        response = model.generate_content(prompt)
+        # Direct generation for whatever topic/request the user provides
+        response = model.generate_content(f"Provide learning guidance and recommendations for: {topic}")
         return response.text.strip()
     except Exception as e:
         return f"Error in Learning Path: {e}"

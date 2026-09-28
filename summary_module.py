@@ -18,8 +18,7 @@ if api_key:
 def summarize_text(text: str) -> str:
     try:
         model = genai.GenerativeModel(model_name="models/gemini-3.8-flash")
-        prompt = f"Summarize the following text in simple language:\n\n{text}"
-        response = model.generate_content(prompt)
+        response = model.generate_content(f"Summarize the following text clearly: {text}")
         return response.text.strip()
     except Exception as e:
         return f"Error in Summary: {e}"
