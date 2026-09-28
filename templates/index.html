@@ -52,7 +52,7 @@
     <section class="section-card">
       <label for="quizText">Generate a Quiz</label>
       <form id="quizForm" class="form-row">
-        <input type="text" id="quizText" placeholder="Solar System" autocomplete="off" required>
+        <input type="text" id="quizText" placeholder="e.g. Solar System, or 10 questions on Python" autocomplete="off" required>
         <button type="submit" class="btn-primary">Generate Quiz</button>
       </form>
       <div id="quizResult" class="output"></div>
@@ -129,7 +129,7 @@
       }
     });
 
-    // 4. Quiz Handler
+    // 4. Quiz Handler (Dynamic Question Count & Interactive Checking)
     document.getElementById("quizForm").addEventListener("submit", async (e) => {
       e.preventDefault();
       const text = document.getElementById("quizText").value.trim();
@@ -151,7 +151,7 @@
           return;
         }
 
-        let quizHtml = '<div class="quiz-container"><strong class="title">Quiz:</strong>';
+        let quizHtml = '<div class="quiz-container"><strong class="title">Quiz (' + quizList.length + ' Questions):</strong>';
         quizList.forEach((q, idx) => {
           const qNum = idx + 1;
           quizHtml += `
@@ -178,7 +178,7 @@
       }
     });
 
-    // Global Quiz Verification Function (No Emojis)
+    // Global Quiz Verification Function
     window.checkQuizAnswer = function(qNum, encodedCorrectAnswer) {
       const selected = document.querySelector(`input[name="quiz_q_${qNum}"]:checked`);
       const feedback = document.getElementById(`quizFeedback_${qNum}`);

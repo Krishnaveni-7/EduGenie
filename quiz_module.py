@@ -20,27 +20,29 @@ if api_key:
 def clean_json_block(text: str) -> str:
     return re.sub(r"```(?:json)?\n(.*?)```", r"\1", text, flags=re.DOTALL).strip()
 
-def generate_quiz(text: str) -> list:
+def generate_quiz(text: str, num_questions: int = 5) -> list:
     try:
         model = genai.GenerativeModel(model_name="models/gemini-3.8-flash")
-        prompt = f"""You are a quiz generator.
+        prompt = f"""You are an intelligent educational quiz generator.
 
-From the following passage, create 3 multiple-choice questions. Each question should include:
-- A "question"
-- A list of 4 "options"
-- A correct "answer" that must exactly match one of the options.
+Analyze the following input or topic:
+"{text}"
 
-Format your output as valid JSON, like this:
+Generate multiple-choice questions. If the user explicitly requested a specific number of questions in their text (for example "10 questions on Python"), generate that exact number. If no number is specified, generate {num_questions} questions.
+
+Each question must include:
+- A "question" string
+- A list of 4 plausible "options"
+- A correct "answer" string that exactly matches one of the 4 options.
+
+Format your response strictly as a valid JSON array of objects:
 [
   {{
-    "question": "What is ...?",
-    "options": ["A", "B", "C", "D"],
-    "answer": "A"
+    "question": "Question text?",
+    "options": ["Option A", "Option B", "Option C", "Option D"],
+    "answer": "Option A"
   }}
 ]
-
-Passage:
-{text}
 """
         response = model.generate_content(prompt)
         quiz_text = response.text.strip()

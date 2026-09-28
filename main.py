@@ -51,10 +51,14 @@ async def summarize_api(request: Request):
 async def quiz_api(request: Request):
     data = await request.json()
     text = data.get("text")
+    num_questions = data.get("num_questions", 5)
     if not text:
         return JSONResponse(content={"error": "Please provide text for quiz."}, status_code=400)
-    quiz = generate_quiz(text)
-    print("Generated quiz:", quiz)  # ✅ DEBUG
+    try:
+        count = int(num_questions)
+    except (ValueError, TypeError):
+        count = 5
+    quiz = generate_quiz(text, num_questions=count)
     return JSONResponse(content={"quiz": quiz})
 
 # Learning Recommendations - GET API
