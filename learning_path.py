@@ -17,7 +17,7 @@ if api_key:
 
 def get_learning_recommendations(topic: str) -> str:
     try:
-        model = genai.GenerativeModel(model_name="models/gemini-3.8-flash")
+        model = genai.GenerativeModel(model_name="models/gemini-3.5-flash-lite")
         # Direct generation for whatever topic/request the user provides
         response = model.generate_content(f"Provide learning guidance and recommendations for: {topic}")
         return response.text.strip()
