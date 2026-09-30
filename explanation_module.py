@@ -51,7 +51,7 @@ def explain_topic(topic: str) -> str:
 
     # 2. Cloud Serverless fallback for Vercel / Render Free Tier
     try:
-        gemini_model = genai.GenerativeModel(model_name="models/gemini-3.8-flash")
+        model = genai.GenerativeModel(model_name="models/gemini-3.5-flash-lite")
         prompt = f"Explain the concept of '{topic}' in a simple and clear way for a school student."
         response = gemini_model.generate_content(prompt)
         return response.text.strip()
