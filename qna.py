@@ -21,7 +21,7 @@ def get_gemini_model():
             return genai.GenerativeModel(model_name=name)
         except Exception:
             continue
-    return genai.GenerativeModel(model_name="models/gemini-3.8-flash")
+    return genai.GenerativeModel(model_name="models/gemini-3.5-flash-lite")
 
 def answer_question_with_gemini(question: str) -> str:
     try:
